@@ -197,10 +197,11 @@ class PluginWeatherCommon:
         conditions_font = pygame.font.SysFont(font_clock, int(self.ymax * conditions_text_height), bold=1)
         small_font = pygame.font.SysFont(font_name, 15, bold=1)
 
-        ip_text = small_font.render("IP " + str(ip) + ":8888", True, (128, 128, 128))
-        ip_text_render = pygame.transform.rotate(ip_text, 90)
-        ip_text_rect = ip_text_render.get_rect(center=(10, self.ymax * 0.25))
-        self.screen.blit(ip_text_render, ip_text_rect)
+        if self.config["show_ip_address"]:
+            ip_text = small_font.render("IP " + str(ip) + ":8888", True, (128, 128, 128))
+            ip_text_render = pygame.transform.rotate(ip_text, 90)
+            ip_text_rect = ip_text_render.get_rect(center=(10, self.ymax * 0.25))
+            self.screen.blit(ip_text_render, ip_text_rect)
 
         txt = conditions_font.render(str(cond), True, text_color)
         txt_rect = txt.get_rect(center=(self.xmax * second_column_x_start_position, self.ymax * y_start))
